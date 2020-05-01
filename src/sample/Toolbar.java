@@ -22,17 +22,11 @@ public class Toolbar extends HBox {
         Slider speedSlider = new Slider();
         Button startButton = new Button("start");
         Button stopButton = new Button("stop");
-        Button resetButton = new Button("reset");
-        resetButton.setOnAction(this::resetHandler);
         this.setAlignment(Pos.CENTER);
         this.setSpacing(5);
-        this.getChildren().addAll(drawButton, eraseButton, resetButton,
+        this.getChildren().addAll(drawButton, eraseButton,
                 label1, speedSlider, startButton, stopButton, stepButton);
     }
-
-    private void resetHandler(ActionEvent event) {
-    }
-
 
     private void stepHandler(ActionEvent event) {
         this.mainview.getGrid().next();
