@@ -1,6 +1,8 @@
 package sample;
 
 public class Grid {
+    final static int ALIVE = 1;
+    final static int DEAD = 0;
     int width;
     int height;
     int[][] grid;
@@ -18,7 +20,7 @@ public class Grid {
             line.delete(0, line.length());
             line.append("|");
             for (int x = 0; x < width; x++) {
-                if (this.grid[x][y] == 0) {
+                if (this.grid[x][y] == DEAD) {
                     line.append("*");
                 } else {
                     line.append(".");
@@ -31,11 +33,11 @@ public class Grid {
     }
 
     public void setAlive(int x, int y) {
-        setState(x, y, 1);
+        setState(x, y, ALIVE);
     }
 
     public void setDead(int x, int y) {
-        setState(x, y, 0);
+        setState(x, y, DEAD);
     }
 
     public void setState(int x, int y, int state) {
@@ -65,9 +67,9 @@ public class Grid {
                 int neighbors = countNeighbors(i, j);
                 int state = this.grid[i][j];
                 if (state == 0 && neighbors == 3) {
-                    next[i][j] = 1;
+                    next[i][j] = ALIVE;
                 } else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
-                    next[i][j] = 0;
+                    next[i][j] = DEAD;
                 } else {
                     next[i][j] = state;
                 }
