@@ -13,41 +13,22 @@ import javafx.scene.transform.Affine;
 import javafx.scene.transform.NonInvertibleTransformException;
 
 public class Mainview extends VBox {
-    private Button stepButton;
-    private Button drawButton;
-    private Button eraseButton;
     private Canvas canvas;
     private Affine affine;
     private Grid grid;
     private final int resolution = 20;
     private final int width = 600;
     private final int height = 400;
-    private int drawMode = 1;
+    private int drawMode = Grid.ALIVE;
 
     public Mainview() {
-        HBox hBox = new HBox();
-        hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(5);
-        this.stepButton = new Button("step");
-        this.stepButton.setOnAction(event -> {
-            this.grid.next();
-            draw();
-        });
-        this.drawButton = new Button("draw");
-        this.drawButton.setOnAction(event -> {
-            this.drawMode = 1;
-        });
-        this.eraseButton = new Button("erase");
-        this.eraseButton.setOnAction(event -> {
-            this.drawMode = 0;
-        });
+        Toolbar toolbar = new Toolbar(this);
         this.affine = new Affine();
         this.affine.appendScale(this.resolution, this.resolution);
         this.canvas = new Canvas(this.width, this.height);
         this.canvas.setOnMousePressed(this::drawHandler);
         this.canvas.setOnMouseDragged(this::drawHandler);
-        hBox.getChildren().addAll(this.stepButton, this.drawButton, this.eraseButton);
-        this.getChildren().addAll(this.canvas, hBox);
+        this.getChildren().addAll(this.canvas, toolbar);
         this.grid = new Grid(this.width / this.resolution, this.height / this.resolution);
     }
 
@@ -67,9 +48,11 @@ public class Mainview extends VBox {
 
     public void draw() {
         GraphicsContext g = this.canvas.getGraphicsContext2D();
+        // background
         g.setFill(Color.BLACK);
         g.fillRect(0, 0, this.width, this.height);
         g.setTransform(this.affine);
+        // alive cell
         g.setFill(Color.WHITE);
         for (int i = 0; i < grid.width; i++) {
             for (int j = 0; j < grid.height; j++) {
@@ -78,7 +61,7 @@ public class Mainview extends VBox {
                 }
             }
         }
-
+        // table line
         g.setStroke(Color.WHITE);
         g.setLineWidth(0.05);
         for (int x = 0; x <= this.grid.width; x++) {
@@ -90,4 +73,11 @@ public class Mainview extends VBox {
     }
 
 
+    public Grid getGrid() {
+        return this.grid;
+    }
+
+    public void setMode(int mode) {
+        this.drawMode = mode;
+    }
 }
