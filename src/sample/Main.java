@@ -10,6 +10,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Mainview mainview = new Mainview();
         Scene scene = new Scene(mainview);
+        primaryStage.setTitle("Game of life");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
