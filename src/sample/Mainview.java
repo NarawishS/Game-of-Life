@@ -1,12 +1,9 @@
 package sample;
 
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Affine;
@@ -40,6 +37,7 @@ public class Mainview extends VBox {
             int posX = (int) pos.getX();
             int posY = (int) pos.getY();
             this.grid.setState(posX, posY, this.drawMode);
+            System.out.println(posX + ", " + posY + " : " + this.drawMode);
             draw();
         } catch (NonInvertibleTransformException e) {
             e.printStackTrace();
@@ -56,7 +54,7 @@ public class Mainview extends VBox {
         g.setFill(Color.WHITE);
         for (int i = 0; i < grid.width; i++) {
             for (int j = 0; j < grid.height; j++) {
-                if (this.grid.grid[i][j] == 1) {
+                if (this.grid.grid[i][j] == Grid.ALIVE) {
                     g.fillRect(i, j, 1, 1);
                 }
             }
@@ -71,7 +69,6 @@ public class Mainview extends VBox {
             g.strokeLine(0, y, this.width, y);
         }
     }
-
 
     public Grid getGrid() {
         return this.grid;
