@@ -41,7 +41,7 @@ public class Grid {
     }
 
     public void setState(int x, int y, int state) {
-        if (x < this.width && y < this.height && x > 0 && y > 0)
+        if (x < this.width && y < this.height && x >= 0 && y >= 0)
             this.grid[x][y] = state;
     }
 
