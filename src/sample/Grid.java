@@ -1,11 +1,15 @@
 package sample;
 
+import java.util.Random;
+
 public class Grid {
     final static int ALIVE = 1;
     final static int DEAD = 0;
     int width;
     int height;
     int[][] grid;
+    Random rand = new Random();
+    int day = 0;
 
     public Grid(int width, int height) {
         this.width = width;
@@ -75,6 +79,25 @@ public class Grid {
                 }
             }
         }
+        this.day++;
         this.grid = next;
+    }
+
+    public void randomGrid() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                this.grid[i][j] = rand.nextInt(2);
+            }
+        }
+    }
+
+    public int getAlive() {
+        int alive = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                alive += this.grid[i][j];
+            }
+        }
+        return alive;
     }
 }
