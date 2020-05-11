@@ -89,6 +89,7 @@ public class Grid {
                 this.grid[i][j] = rand.nextInt(2);
             }
         }
+        day = 0;
     }
 
     public int getAlive() {
@@ -99,5 +100,10 @@ public class Grid {
             }
         }
         return alive;
+    }
+
+    public void clearGrid() {
+        this.grid = new int[width][height];
+        day = 0;
     }
 }
