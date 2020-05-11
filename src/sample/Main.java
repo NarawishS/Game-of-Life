@@ -17,7 +17,6 @@ public class Main extends Application {
         mainview.draw();
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
