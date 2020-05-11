@@ -24,14 +24,15 @@ public class Mainview extends VBox {
         Toolbar toolbar = new Toolbar(this);
         toolbar.getChildren().add(status);
         this.affine = new Affine();
-        int resolution = 20;
+        int resolution = 10;
         this.affine.appendScale(resolution, resolution);
         this.canvas = new Canvas(this.width, this.height);
         this.canvas.setOnMousePressed(this::drawHandler);
         this.canvas.setOnMouseDragged(this::drawHandler);
         this.simulator = new Simulator(this);
         this.grid = new Grid(this.width / resolution, this.height / resolution);
-        this.getChildren().addAll(this.canvas, toolbar);
+        Menubar menubar = new Menubar(this);
+        this.getChildren().addAll(menubar, this.canvas, toolbar);
     }
 
     private void drawHandler(MouseEvent mouseEvent) {
@@ -42,7 +43,7 @@ public class Mainview extends VBox {
             int posX = (int) pos.getX();
             int posY = (int) pos.getY();
             this.grid.setState(posX, posY, this.drawMode);
-            System.out.println(posX + ", " + posY + " : " + this.drawMode);
+            this.grid.day = 0;
             draw();
         } catch (NonInvertibleTransformException e) {
             e.printStackTrace();
