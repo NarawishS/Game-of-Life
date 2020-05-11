@@ -6,27 +6,32 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.NonInvertibleTransformException;
 
 public class Mainview extends VBox {
-    private Canvas canvas;
-    private Affine affine;
-    private Grid grid;
-    private final int resolution = 20;
-    private final int width = 600;
-    private final int height = 400;
+    private final Canvas canvas;
+    private final Affine affine;
+    private final Grid grid;
+    private final int width = 1200;
+    private final int height = 800;
     private int drawMode = Grid.ALIVE;
+    private Simulator simulator;
+    private Text status = new Text();
 
     public Mainview() {
         Toolbar toolbar = new Toolbar(this);
+        toolbar.getChildren().add(status);
         this.affine = new Affine();
-        this.affine.appendScale(this.resolution, this.resolution);
+        int resolution = 20;
+        this.affine.appendScale(resolution, resolution);
         this.canvas = new Canvas(this.width, this.height);
         this.canvas.setOnMousePressed(this::drawHandler);
         this.canvas.setOnMouseDragged(this::drawHandler);
+        this.simulator = new Simulator(this);
+        this.grid = new Grid(this.width / resolution, this.height / resolution);
         this.getChildren().addAll(this.canvas, toolbar);
-        this.grid = new Grid(this.width / this.resolution, this.height / this.resolution);
     }
 
     private void drawHandler(MouseEvent mouseEvent) {
@@ -68,13 +73,18 @@ public class Mainview extends VBox {
         for (int y = 0; y <= this.grid.height; y++) {
             g.strokeLine(0, y, this.width, y);
         }
+        this.status.setText(String.format("\tDay : %d\tAlive : %d", this.grid.day, this.grid.getAlive()));
     }
 
     public Grid getGrid() {
         return this.grid;
     }
 
-    public void setMode(int mode) {
+    public void setCell(int mode) {
         this.drawMode = mode;
+    }
+
+    public Simulator getSimulator() {
+        return this.simulator;
     }
 }
