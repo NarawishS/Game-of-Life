@@ -1,4 +1,4 @@
-package sample;
+package GameOfLife;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;

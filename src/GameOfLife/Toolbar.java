@@ -1,4 +1,4 @@
-package sample;
+package GameOfLife;
 
 import javafx.animation.Animation;
 import javafx.event.ActionEvent;
