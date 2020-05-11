@@ -20,6 +20,11 @@ public class Toolbar extends HBox {
         drawButton.setOnAction(this::drawHandler);
         Button eraseButton = new Button("erase");
         eraseButton.setOnAction(this::eraseHandler);
+        Button clearButton = new Button("clear");
+        clearButton.setOnAction(event -> {
+            this.mainview.getGrid().clearGrid();
+            this.mainview.draw();
+        });
         Label label1 = new Label("speed");
         Button startButton = new Button("start");
         startButton.setOnAction(this::startHandler);
@@ -32,7 +37,7 @@ public class Toolbar extends HBox {
         this.speedSlider.setMin(1);
         this.setAlignment(Pos.CENTER);
         this.setSpacing(5);
-        this.getChildren().addAll(drawButton, eraseButton, randomButton,
+        this.getChildren().addAll(drawButton, eraseButton, clearButton, randomButton,
                 label1, speedSlider, startButton, stopButton, stepButton);
     }
 
