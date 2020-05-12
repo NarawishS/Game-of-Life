@@ -4,10 +4,10 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class AppMain extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception{
         Startview startview = new Startview(primaryStage);
         Scene startScene = new Scene(startview);
         primaryStage.setTitle("Game of life: Configuration");
