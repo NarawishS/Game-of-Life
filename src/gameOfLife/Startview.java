@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,15 +17,15 @@ import javafx.stage.Stage;
  * @author Narawish Sangsiriwut
  */
 public class Startview extends VBox {
-
     /**
      * initialize configuration menu
      */
     public Startview(Stage primaryStage) {
-        this.setMinSize(300, 100);
+        this.setMinSize(320, 100);
         this.setPadding(new Insets(10.0));
         this.setAlignment(Pos.CENTER);
         this.setSpacing(5.0);
+        primaryStage.setResizable(false);
 
         HBox resolutionTile = new HBox();
         Text resolution = new Text("Screen resolution");
@@ -44,10 +45,17 @@ public class Startview extends VBox {
         cellSize.setAlignment(Pos.CENTER_LEFT);
         cellSize.setSpacing(10.0);
 
+        HBox loopStatus = new HBox();
+        Text loopText = new Text("loop");
+        CheckBox checkBox = new CheckBox();
+        loopStatus.getChildren().addAll(loopText, checkBox);
+        loopStatus.setAlignment(Pos.CENTER_LEFT);
+        loopStatus.setSpacing(10.0);
+
         HBox menu = new HBox();
         Button play = new Button("Play!");
         play.setOnAction(event -> {
-            Mainview mainview = new Mainview(size.getValue().width, size.getValue().height, cSize.getValue().size);
+            Mainview mainview = new Mainview(size.getValue().width, size.getValue().height, cSize.getValue().size, checkBox.isSelected());
             primaryStage.setTitle("Game of life");
             primaryStage.setScene(new Scene(mainview));
             primaryStage.show();
@@ -60,7 +68,7 @@ public class Startview extends VBox {
         menu.setAlignment(Pos.CENTER_RIGHT);
         menu.setSpacing(10.0);
 
-        this.getChildren().addAll(resolutionTile, cellSize, menu);
+        this.getChildren().addAll(resolutionTile, cellSize, loopStatus, menu);
     }
 
     /**

@@ -56,7 +56,7 @@ public class Mainview extends VBox {
     /**
      * Create init component of Mainview.
      */
-    public Mainview(int width, int height, int resolution) {
+    public Mainview(int width, int height, int resolution, boolean loop) {
         this.width = width;
         this.height = height;
         this.resolution = resolution;
@@ -68,7 +68,7 @@ public class Mainview extends VBox {
         this.canvas.setOnMousePressed(this::drawHandler);
         this.canvas.setOnMouseDragged(this::drawHandler);
         this.simulator = new Simulator(this);
-        this.grid = new Grid(this.width / resolution, this.height / resolution);
+        this.grid = new Grid(this.width / resolution, this.height / resolution, loop);
         Menubar menubar = new Menubar(this);
         this.getChildren().addAll(menubar, this.canvas, toolbar);
     }
