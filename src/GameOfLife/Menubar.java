@@ -29,7 +29,7 @@ public class Menubar extends MenuBar {
     private void handleLoadClicked(ActionEvent event) {
         Window stage = this.getScene().getWindow();
         fileChooser.setTitle("Load Dialog");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("game file", String.format("*.gof_%s", mainview.getSize())));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("game file", String.format("*.gol_%s", mainview.getSize())));
         try {
             File file = fileChooser.showOpenDialog(stage);
             fileChooser.setInitialDirectory(file.getParentFile());
@@ -46,7 +46,7 @@ public class Menubar extends MenuBar {
         Window stage = this.getScene().getWindow();
         fileChooser.setTitle("Save Dialog");
         fileChooser.setInitialFileName("mysave");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("game file", String.format("*.gof_%s", mainview.getSize())));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("game file", String.format("*.gol_%s", mainview.getSize())));
         try {
             File file = fileChooser.showSaveDialog(stage);
             fileChooser.setInitialDirectory(file.getParentFile());
