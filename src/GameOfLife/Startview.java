@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class Startview extends VBox {
 
     public Startview(Stage primaryStage) {
-        this.setMinSize(200, 100);
+        this.setMinSize(300, 100);
         this.setPadding(new Insets(10.0));
         this.setAlignment(Pos.CENTER);
         this.setSpacing(5.0);
@@ -57,8 +57,8 @@ public class Startview extends VBox {
 
     public enum Size {
         Small_800x400(800, 400),
-        Medium_800x600(800, 600),
-        Large_800x800(800, 800);
+        Medium_1000x600(1000, 600),
+        Large_1200x800(1200, 800);
 
         private final int width;
         private final int height;
