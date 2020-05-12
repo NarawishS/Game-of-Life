@@ -12,6 +12,7 @@ public class Grid {
     final static int DEAD = 0;
     final int width;
     final int height;
+    final boolean loop;
     int[][] grid;
     Random rand = new Random();
     int day = 0;
@@ -19,9 +20,10 @@ public class Grid {
     /**
      * Initialize new board.
      */
-    public Grid(int width, int height) {
+    public Grid(int width, int height, boolean loop) {
         this.width = width;
         this.height = height;
+        this.loop = loop;
         this.grid = new int[width][height];
     }
 
@@ -70,11 +72,30 @@ public class Grid {
     }
 
     /**
-     * Count the surrounding cell.
+     * Count the surrounding cell(not loop).
      *
      * @return number of alive neighbor cells
      */
     public int countNeighbors(int x, int y) {
+        int sum = 0;
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                int col = (x + i);
+                int row = (y + j);
+                if (col >= 0 && col < width && row >= 0 && row < height)
+                    sum += this.grid[col][row];
+            }
+        }
+        sum -= this.grid[x][y];
+        return sum;
+    }
+
+    /**
+     * Count the surrounding cell(loop).
+     *
+     * @return number of alive neighbor cells
+     */
+    public int countNeighborsLoop(int x, int y) {
         int sum = 0;
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
@@ -96,7 +117,11 @@ public class Grid {
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
                 // Count live neighbors!
-                int neighbors = countNeighbors(i, j);
+                int neighbors;
+                if (this.loop)
+                    neighbors = countNeighborsLoop(i, j);
+                else
+                    neighbors = countNeighbors(i, j);
                 int state = this.grid[i][j];
                 if (state == 0 && neighbors == 3) {
                     next[i][j] = ALIVE;
