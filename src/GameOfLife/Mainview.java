@@ -14,17 +14,20 @@ public class Mainview extends VBox {
     private final Canvas canvas;
     private final Affine affine;
     private final Grid grid;
-    private final int width = 1200;
-    private final int height = 800;
+    private final int width;
+    private final int height;
+    private final int resolution;
     private int drawMode = Grid.ALIVE;
-    private Simulator simulator;
-    private Text status = new Text();
+    private final Simulator simulator;
+    private final Text status = new Text();
 
-    public Mainview() {
+    public Mainview(int width, int height, int resolution) {
+        this.width = width;
+        this.height = height;
+        this.resolution = resolution;
         Toolbar toolbar = new Toolbar(this);
         toolbar.getChildren().add(status);
         this.affine = new Affine();
-        int resolution = 10;
         this.affine.appendScale(resolution, resolution);
         this.canvas = new Canvas(this.width, this.height);
         this.canvas.setOnMousePressed(this::drawHandler);
@@ -87,5 +90,9 @@ public class Mainview extends VBox {
 
     public Simulator getSimulator() {
         return this.simulator;
+    }
+
+    public String getSize() {
+        return String.format("%dx%d_%d", this.width, this.height, this.resolution);
     }
 }
