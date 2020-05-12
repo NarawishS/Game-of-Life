@@ -1,4 +1,4 @@
-package GameOfLife;
+package gameOfLife;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
@@ -10,17 +10,52 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.NonInvertibleTransformException;
 
+/**
+ * Main Scene of the game.
+ *
+ * @author Narawish Sangsiriwut
+ */
 public class Mainview extends VBox {
+    /**
+     * Canvas that draw the board.
+     */
     private final Canvas canvas;
+    /**
+     * Resolution of the cell.
+     */
     private final Affine affine;
+    /**
+     * board data.
+     */
     private final Grid grid;
+    /**
+     * width of canvas.
+     */
     private final int width;
+    /**
+     * height of canvas.
+     */
     private final int height;
+    /**
+     * size of cell.
+     */
     private final int resolution;
+    /**
+     * status to set cell when mouse is press on canvas.
+     */
     private int drawMode = Grid.ALIVE;
+    /**
+     * class for running board.
+     */
     private final Simulator simulator;
+    /**
+     * Status of board contain day, alive cell.
+     */
     private final Text status = new Text();
 
+    /**
+     * Create init component of Mainview.
+     */
     public Mainview(int width, int height, int resolution) {
         this.width = width;
         this.height = height;
@@ -38,6 +73,11 @@ public class Mainview extends VBox {
         this.getChildren().addAll(menubar, this.canvas, toolbar);
     }
 
+    /**
+     * set canvas cell according to current drawMode.
+     *
+     * @param mouseEvent event when mouse is press on canvas.
+     */
     private void drawHandler(MouseEvent mouseEvent) {
         double mouseX = mouseEvent.getX();
         double mouseY = mouseEvent.getY();
@@ -53,6 +93,9 @@ public class Mainview extends VBox {
         }
     }
 
+    /**
+     * draw grid information on canvas and update status.
+     */
     public void draw() {
         GraphicsContext g = this.canvas.getGraphicsContext2D();
         // background
@@ -80,18 +123,36 @@ public class Mainview extends VBox {
         this.status.setText(String.format("\tDay : %d\tAlive : %d", this.grid.day, this.grid.getAlive()));
     }
 
+    /**
+     * get grid.
+     *
+     * @return this grid
+     */
     public Grid getGrid() {
         return this.grid;
     }
 
-    public void setCell(int mode) {
+    /**
+     * set drawMode.
+     */
+    public void setDrawMode(int mode) {
         this.drawMode = mode;
     }
 
+    /**
+     * get simulator.
+     *
+     * @return this Simulator
+     */
     public Simulator getSimulator() {
         return this.simulator;
     }
 
+    /**
+     * get size information of canvas.
+     *
+     * @return information of canvas(eg.800x400_20)
+     */
     public String getSize() {
         return String.format("%dx%d_%d", this.width, this.height, this.resolution);
     }

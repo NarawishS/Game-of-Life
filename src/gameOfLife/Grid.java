@@ -1,22 +1,33 @@
-package GameOfLife;
+package gameOfLife;
 
 import java.util.Random;
 
+/**
+ * Grid representing the data of board in Array
+ *
+ * @author Narawish Sangsiriwut
+ */
 public class Grid {
     final static int ALIVE = 1;
     final static int DEAD = 0;
-    int width;
-    int height;
+    final int width;
+    final int height;
     int[][] grid;
     Random rand = new Random();
     int day = 0;
 
+    /**
+     * Initialize new board.
+     */
     public Grid(int width, int height) {
         this.width = width;
         this.height = height;
         this.grid = new int[width][height];
     }
 
+    /**
+     * Print view of board in console.
+     */
     public void printGrid() {
         StringBuilder line = new StringBuilder();
         System.out.println("---");
@@ -36,19 +47,33 @@ public class Grid {
         System.out.println("---\n");
     }
 
+    /**
+     * Set cell to Alive
+     */
     public void setAlive(int x, int y) {
         setState(x, y, ALIVE);
     }
 
+    /**
+     * Set cell to Dead
+     */
     public void setDead(int x, int y) {
         setState(x, y, DEAD);
     }
 
+    /**
+     * Set the cell.
+     */
     public void setState(int x, int y, int state) {
         if (x < this.width && y < this.height && x >= 0 && y >= 0)
             this.grid[x][y] = state;
     }
 
+    /**
+     * Count the surrounding cell.
+     *
+     * @return number of alive neighbor cells
+     */
     public int countNeighbors(int x, int y) {
         int sum = 0;
         for (int i = -1; i < 2; i++) {
@@ -62,6 +87,9 @@ public class Grid {
         return sum;
     }
 
+    /**
+     * Apply the rule on board then change cell on the board.
+     */
     public void next() {
         int[][] next = new int[this.width][this.height];
         // Compute next based on grid
@@ -83,6 +111,9 @@ public class Grid {
         this.grid = next;
     }
 
+    /**
+     * Random cell on board.
+     */
     public void randomGrid() {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -92,6 +123,11 @@ public class Grid {
         day = 0;
     }
 
+    /**
+     * Get all alive cell.
+     *
+     * @return number of alive cell
+     */
     public int getAlive() {
         int alive = 0;
         for (int i = 0; i < width; i++) {
@@ -102,6 +138,9 @@ public class Grid {
         return alive;
     }
 
+    /**
+     * Clear all alive cell in grid.
+     */
     public void clearGrid() {
         this.grid = new int[width][height];
         day = 0;

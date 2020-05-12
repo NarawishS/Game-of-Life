@@ -1,4 +1,4 @@
-package GameOfLife;
+package gameOfLife;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,8 +10,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Scene when start the application to configure the canvas.
+ *
+ * @author Narawish Sangsiriwut
+ */
 public class Startview extends VBox {
 
+    /**
+     * initialize configuration menu
+     */
     public Startview(Stage primaryStage) {
         this.setMinSize(300, 100);
         this.setPadding(new Insets(10.0));
@@ -55,6 +63,9 @@ public class Startview extends VBox {
         this.getChildren().addAll(resolutionTile, cellSize, menu);
     }
 
+    /**
+     * Size enum of canvas
+     */
     public enum Size {
         Small_800x400(800, 400),
         Medium_1000x600(1000, 600),
@@ -69,6 +80,9 @@ public class Startview extends VBox {
         }
     }
 
+    /**
+     * resolution enum for cell size
+     */
     public enum CellSize {
         Small(5),
         Medium(10),

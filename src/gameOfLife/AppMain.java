@@ -1,13 +1,18 @@
-package GameOfLife;
+package gameOfLife;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Main application.
+ *
+ * @author Narawish Sangsiriwut
+ */
 public class AppMain extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Startview startview = new Startview(primaryStage);
         Scene startScene = new Scene(startview);
         primaryStage.setTitle("Game of life: Configuration");
