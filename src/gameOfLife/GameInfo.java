@@ -13,7 +13,7 @@ public class GameInfo {
             "\tEach cell with one or no neighbors dies, as if by solitude.\n" +
             "\tEach cell with four or more neighbors dies, as if by overpopulation.\n" +
             "\tEach cell with two or three neighbors survives.\n" +
-            "For a space that is empty or unpopulated\n" +
+            "For a space that is empty or unpopulated:\n" +
             "\tEach cell with three neighbors becomes populated.";
     public final static String CONTROL = "draw: \tclick draw button before drawing canvas to set cell on board to alive\n" +
             "erase: \tclick erase button before drawing canvas to set cell on board to dead\n" +
