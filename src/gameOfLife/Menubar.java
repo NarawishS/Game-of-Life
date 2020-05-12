@@ -1,18 +1,30 @@
-package GameOfLife;
+package gameOfLife;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
 import java.io.*;
 
+/**
+ * MenuBar of program to save and load(save file in Object type).
+ *
+ * @author Narawish Sangsiriwut
+ */
 public class Menubar extends MenuBar {
+    /**
+     * mainview of board
+     */
     private final Mainview mainview;
+    /**
+     * FileChooser for load and save
+     */
     FileChooser fileChooser = new FileChooser();
 
+    /**
+     * initialize Menubar.
+     */
     public Menubar(Mainview main) {
         this.mainview = main;
         Menu file = new Menu("File");
@@ -24,8 +36,20 @@ public class Menubar extends MenuBar {
         exit.setOnAction(event -> System.exit(0));
         file.getItems().addAll(save, load, exit);
         this.getMenus().add(file);
+        Menu about = new Menu("Help");
+        MenuItem help = new MenuItem("Rule");
+        help.setOnAction(this::showRule);
+        MenuItem control = new MenuItem("Control");
+        control.setOnAction(this::showControl);
+        about.getItems().addAll(help, control);
+        this.getMenus().add(about);
     }
 
+    /**
+     * handle load event.
+     *
+     * @param event load event
+     */
     private void handleLoadClicked(ActionEvent event) {
         Window stage = this.getScene().getWindow();
         fileChooser.setTitle("Load Dialog");
@@ -42,6 +66,11 @@ public class Menubar extends MenuBar {
         }
     }
 
+    /**
+     * handle save event.
+     *
+     * @param event save event
+     */
     private void handleSaveClicked(ActionEvent event) {
         Window stage = this.getScene().getWindow();
         fileChooser.setTitle("Save Dialog");
@@ -57,5 +86,27 @@ public class Menubar extends MenuBar {
         }
     }
 
+    /**
+     * show rule of the game
+     *
+     * @param event rule click
+     */
+    private void showRule(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Game of life's rules");
+        alert.setContentText(GameInfo.RULE);
+        alert.show();
+    }
 
+    /**
+     * show control
+     *
+     * @param event control click
+     */
+    private void showControl(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Control");
+        alert.setContentText(GameInfo.CONTROL);
+        alert.show();
+    }
 }
