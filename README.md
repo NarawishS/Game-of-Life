@@ -19,8 +19,8 @@ When you open the application you will see a window like picture below.
 ![startview](https://github.com/NarawishS/pa4-NarawishS/blob/master/src/image/configure.jpg?raw=true)
 
 1. choose the resolution
-2. choose cell's size
-3. check if you want the game to loop around edge case or not
+2. choose cell size
+3. check loop if you want the game to loop around border
 
 the application should look like this after you click Play!
 
@@ -51,7 +51,8 @@ if you can't then
 1. run this program in your ide
 2. If you are using JDK 8-10 then JavaFX is included. You don't need to add any libraries.
 3. If you are using Java JDK 11, then install JavaFX 11 from https://gluonhq.com/products/javafx.
-4. set up your ide `see: https://openjfx.io/openjfx-docs/`
+4. set up your ide to run JavaFX.
+[see more](https://openjfx.io/openjfx-docs/)
 
 run in command > `java -jar UnitConverter.jar if you are using JDK 8`
 
@@ -61,3 +62,7 @@ run in command > `java --module-path /path/to/javafx11/lib/ --add-modules javafx
 
 ## UML of application
 ![appUML](https://github.com/NarawishS/pa4-NarawishS/blob/master/src/image/uml.png?raw=true)
+
+## External lib
+[JDK](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+[JavaFX](https://openjfx.io/)
