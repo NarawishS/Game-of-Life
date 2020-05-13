@@ -83,7 +83,7 @@ public class Startview extends VBox {
         Small_800x400(800, 400),
         Medium_1000x600(1000, 600),
         Large_1200x800(1200, 800),
-        FullScreen((int) (Mainview.SCREENX - (Mainview.SCREENX % 20)), (int) (Mainview.SCREENY - (Mainview.SCREENX % 20) - 20));
+        FullScreen((int) (Mainview.SCREENX - (Mainview.SCREENX % 20)), (int) (Mainview.SCREENY - (Mainview.SCREENY % 20) - 20));
 
         private final int width;
         private final int height;
