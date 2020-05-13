@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.NonInvertibleTransformException;
+import javafx.stage.Screen;
 
 /**
  * Main Scene of the game.
@@ -52,6 +53,14 @@ public class Mainview extends VBox {
      * Status of board contain day, alive cell.
      */
     private final Text status = new Text();
+    /**
+     * resolution of screen width
+     */
+    static final double SCREENX = Screen.getPrimary().getVisualBounds().getMaxX();
+    /**
+     * resolution of screen height
+     */
+    static final double SCREENY = Screen.getPrimary().getVisualBounds().getMaxY();
 
     /**
      * Create init component of Mainview.
