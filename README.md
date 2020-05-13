@@ -54,15 +54,16 @@ if you can't then
 4. set up your ide to run JavaFX.
 [see more](https://openjfx.io/openjfx-docs/)
 
-run in command > `java -jar UnitConverter.jar if you are using JDK 8`
+run in command > `java -jar Game_of_life-NarawishS.jar` if you are using JDK 8
 
 For Java 11 you need to specify the module path for JavaFX
 
-run in command > `java --module-path /path/to/javafx11/lib/ --add-modules javafx.controls -jar UnitConverter.jar`
+run in command > `java --module-path /path/to/javafx11/lib/ --add-modules javafx.controls -jar lib.Game_of_life-NarawishS.jar`
 
 ## UML of application
 ![appUML](https://github.com/NarawishS/pa4-NarawishS/blob/master/src/image/uml.png?raw=true)
 
 ## External lib
 [JDK](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+
 [JavaFX](https://openjfx.io/)
